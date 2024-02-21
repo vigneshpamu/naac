@@ -1,12 +1,15 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
+import { useLocation } from 'react-router-dom'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 const Header = () => {
   const { currentUser } = useSelector((state) => state.user)
   const [searchTerm, setSearchTerm] = useState('')
+  const [currentUrl, setCurrentUrl] = useState('')
   const navigate = useNavigate()
+  const location = useLocation()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -15,6 +18,11 @@ const Header = () => {
     const searchQuery = urlParams.toString()
     navigate(`/search?${searchQuery}`)
   }
+
+  useEffect(() => {
+    const currentUrl = location.pathname
+    setCurrentUrl(currentUrl.substring(1))
+  }, [location])
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search)
@@ -59,17 +67,23 @@ const Header = () => {
               About
             </li>
           </Link>
-          <Link to="/profile">
-            {currentUser ? (
+          {currentUser ? (
+            <Link to="/profile">
               <img
                 className="rounded-full h-7 w-7 object-cover"
                 src={currentUser?.avatar}
                 alt="profile"
               />
-            ) : (
-              <li className="text-slate-700 hover:underline">Sign in</li>
-            )}
-          </Link>
+            </Link>
+          ) : currentUrl === 'sign-in' ? (
+            <Link to="/sign-up">
+              <p className="text-slate-700 hover:underline">Sign up</p>
+            </Link>
+          ) : (
+            <Link to="/sign-in">
+              <p className="text-slate-700 hover:underline">Sign in</p>
+            </Link>
+          )}
         </ul>
       </div>
     </header>

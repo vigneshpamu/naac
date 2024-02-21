@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRef } from 'react'
+import { useToast } from '@/components/ui/use-toast'
 import {
   getDownloadURL,
   getStorage,
@@ -24,6 +25,8 @@ import { Link } from 'react-router-dom'
 
 const Profile = () => {
   const fileRef = useRef(null)
+
+  const { toast } = useToast()
   const { currentUser, loading, error } = useSelector((state) => state.user)
   const [file, setFile] = useState(undefined)
   const [fileUploadError, setFileUploadError] = useState(false)
@@ -33,7 +36,34 @@ const Profile = () => {
   const dispatch = useDispatch()
   const [showListingError, setShowListingError] = useState(false)
   const [userListings, setUserListings] = useState([])
+  useEffect(() => {
+    if (file) {
+      handleFileUpload(file)
+    }
+  }, [file])
 
+  const handleFileUpload = (file) => {
+    const storage = getStorage(app)
+    const fileName = new Date().getTime() + file.name
+    const storageRef = ref(storage, fileName)
+    const uploadTask = uploadBytesResumable(storageRef, file)
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        setFilePec(Math.round(progress))
+      },
+      (error) => {
+        setFileUploadError(true)
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setFormData({ ...formData, avatar: downloadURL })
+        })
+      }
+    )
+  }
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value })
   }
@@ -57,6 +87,11 @@ const Profile = () => {
       }
       dispatch(updateUserSuccess(data))
       setUpdateSuccess(true)
+      toast({
+        title: 'User Updated Successfully',
+        variant: 'success',
+        // description: 'Friday, February 10, 2023 at 5:57 PM',
+      })
     } catch (error) {
       dispatch(updateUserFailure(error.message))
     }
@@ -131,6 +166,19 @@ const Profile = () => {
       <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
+          onChange={(e) => setFile(e.target.files[0])}
+          type="file"
+          ref={fileRef}
+          hidden
+          accept="image/*"
+        />
+        <img
+          onClick={() => fileRef.current.click()}
+          className="rounded-full h-24 w-24 object-cover cursor-pointer self-center"
+          src={formData?.avatar || currentUser.avatar}
+          alt=""
+        />
+        <input
           type="text"
           placeholder="username"
           defaultValue={currentUser.username}
@@ -179,7 +227,7 @@ const Profile = () => {
       </div>
       <p className="text-red-700 mt-5">{error ? error : ''}</p>
       <p className="text-green-700 mt-5">
-        {updateSuccess ? 'User is updated successfully!' : ''}
+        {/* {updateSuccess ? 'User is updated successfully!' : ''} */}
       </p>
       <button onClick={handleShowListing} className="text-green-700 w-full">
         Show Listing
