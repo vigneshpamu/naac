@@ -1,14 +1,16 @@
 import { events } from '@/data/eventsData'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoMdPeople, IoMdSearch } from 'react-icons/io'
 import { Skeleton } from '@/components/ui/skeleton'
 import { GiDuration } from 'react-icons/gi'
 import { BiCategory } from 'react-icons/bi'
 import { MdCurrencyRupee } from 'react-icons/md'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 const Events = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchResults, setSearchResults] = useState(events)
+  const params = useParams()
+  const { category, name } = params
   const handleSearch = (e) => {
     const value = e.target.value
     setSearchTerm(value)
@@ -21,6 +23,16 @@ const Events = () => {
 
     setSearchResults(results)
   }
+  const location = useLocation()
+
+  useEffect(() => {
+    // const searchParams = new URLSearchParams(location.search)
+    // const category = searchParams.get('category')
+    // const name = searchParams.get('name')
+
+    console.log('Category:', category)
+    console.log('Name:', name)
+  }, [location.search])
   return (
     <div className="mt-16 min-h-[100vh] w-[100vw] bg-slate-900">
       {/* Search Bar */}
@@ -44,7 +56,10 @@ const Events = () => {
           <div className="flex flex-col gap-5">
             {searchResults.map((item, index) => {
               return (
-                <div className="max-w-sm w-full lg:min-w-[930px] lg:flex">
+                <div
+                  key={index}
+                  className="max-w-sm w-full lg:min-w-[930px] lg:flex"
+                >
                   <Skeleton className="h-48 lg:h-auto l g:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
                     <div
                       className="h-48 lg:h-auto min-w-[400px] lg: w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
@@ -112,10 +127,12 @@ const Events = () => {
                       </div>
                       {/* <MdCurrencyRupee className="text-xl" />
                         <p className="text-lg font-semibold">{item.amount}</p> */}
-                      <Link to="/form">
+                      <Link
+                        to={`/form?category=${item.category}&name=${item.eventName}`}
+                      >
                         <button
                           type="button"
-                          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                         >
                           Register Now
                         </button>
