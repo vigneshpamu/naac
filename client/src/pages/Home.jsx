@@ -11,6 +11,8 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import HeroSect from '@/components/home/HeroSect'
+import { Link } from 'react-router-dom'
+import Footer from '@/components/common/Footer'
 
 export default function Home() {
   const data = [
@@ -51,8 +53,35 @@ export default function Home() {
     link.click()
   }
 
+  const links = [
+    {
+      name: 'Register',
+      link: 'https://siesce.edu.in/',
+    },
+    {
+      name: 'Faculty Login',
+      link: 'https://siesce.edu.in/#',
+    },
+    {
+      name: 'Download Study Material',
+      link: 'https://siesce.edu.in/e-resources',
+    },
+    {
+      name: 'Library',
+      link: 'https://siesce.edu.in/library',
+    },
+    {
+      name: 'College Committees',
+      link: 'https://siesce.edu.in/college-committees',
+    },
+    {
+      name: 'Publications',
+      link: 'https://siesce.edu.in/publications',
+    },
+  ]
+
   return (
-    <div className="h-[100vh] max-w-8xl mt-16 relative bg-gray-50 ">
+    <div className="h-full max-w-8xl mt-16 relative bg-gray-50 ">
       {/* {meteors.map((el, idx) => (
         <span
           key={'meteor' + idx}
@@ -99,7 +128,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="w-full">Footer</div>
+      <Footer />
     </div>
   )
 }

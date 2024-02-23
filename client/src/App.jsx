@@ -5,11 +5,7 @@ import Home from './pages/Home'
 import SignIn from './pages/SignIn'
 import PrivateRoute from './components/PrivateRoute'
 import Profile from './pages/Profile'
-import CreateListing from './pages/CreateListing'
-import Events from './pages/Events'
-import Form from './pages/Form'
-import Success from './pages/Success'
-import Failed from './pages/Failed'
+import About from './pages/About'
 
 export default function App() {
   return (
@@ -19,16 +15,17 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/about" element={<About />} />
         {/* <Route path="/about" element={<About />} /> */}
         {/* <Route path="/search" element={<Search />} /> */}
         {/* <Route path="/listing/:listingId" element={<Listing />} /> */}
-        <Route path="/events" element={<Events />} />
+        {/* <Route path="/events" element={<Events />} /> */}
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
-          <Route path="/form" element={<Form />} />
+          {/* <Route path="/form" element={<Form />} />
           <Route path="/create-listing" element={<CreateListing />} />
           <Route path="/success" element={<Success />} />
-          <Route path="/failed" element={<Failed />} />
+          <Route path="/failed" element={<Failed />} /> */}
           {/* <Route
             path="/update-listing/:listingId"
             element={<UpdateListing />}
