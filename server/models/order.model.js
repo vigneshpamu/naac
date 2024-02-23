@@ -23,7 +23,7 @@ const schema = new mongoose.Schema(
       type: String,
       default: null,
     },
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // Reference to User model
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null }, // Reference to User model
   },
   {
     timestamps: true,
@@ -32,6 +32,4 @@ const schema = new mongoose.Schema(
 
 const OrderModel = mongoose.model('order', schema)
 
-module.exports = {
-  OrderModel,
-}
+export default OrderModel

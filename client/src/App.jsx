@@ -8,6 +8,8 @@ import Profile from './pages/Profile'
 import CreateListing from './pages/CreateListing'
 import Events from './pages/Events'
 import Form from './pages/Form'
+import Success from './pages/Success'
+import Failed from './pages/Failed'
 
 export default function App() {
   return (
@@ -25,6 +27,8 @@ export default function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/form" element={<Form />} />
           <Route path="/create-listing" element={<CreateListing />} />
+          <Route path="/success" element={<Success />} />
+          <Route path="/failed" element={<Failed />} />
           {/* <Route
             path="/update-listing/:listingId"
             element={<UpdateListing />}

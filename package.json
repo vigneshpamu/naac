@@ -24,6 +24,7 @@
     "jsonwebtoken": "^9.0.2",
     "mini-svg-data-uri": "^1.4.4",
     "mongoose": "^7.5.3",
+    "morgan": "^1.10.0",
     "nodemon": "^3.0.1",
     "razorpay": "^2.9.2",
     "tailwind-merge": "^2.2.1"
