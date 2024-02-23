@@ -58,9 +58,9 @@ const About = () => {
         style={{ backgroundImage: "url('/images/about/hero.jpg')" }}
       ></div>
       <div className="mt-[-60px] max-w-[1200px] mx-auto">
-        <p className="text-2xl font-bold">Home &#62; About</p>
+        <p className="text-2xl font-bold px-3 lg:px-0">Home &#62; About</p>
       </div>
-      <div className="mt-20 max-w-[1200px] mx-auto flex flex-row gap-8">
+      <div className="mt-20 max-w-[1200px] mx-auto flex flex-col px-3 lg:px-0 lg:flex-row gap-8">
         <div className="flex flex-col gap-5 text-xl">
           <p className="text-blue-800 leading-relaxed">
             The South Indian Education Society (SIES) was established to promote
@@ -88,23 +88,23 @@ const About = () => {
           <img
             src="/images/about/main2.png"
             alt=""
-            className="min-w-[380px] h-auto "
+            className="w-full sm:min-w-[380px] h-auto "
           />
         </div>
       </div>
       <div className="max-w-[1200px] flex items-start justify-start py-10 mx-auto">
         <div className="mt-16 max-w-[800px]   gap-8">
-          <p className="font-semibold text-2xl text-blue-700">
+          <p className="font-semibold text-2xl px-5 text-blue-700">
             Our Principals Over The Years
           </p>
-          <div className="grid grid-cols-2 gap-16 mt-10">
+          <div className="grid grid-cols-1 px-5 sm:grid-cols-2 gap-16 mt-10">
             {prinicipalsData.map((item, index) => {
               return (
                 <div
                   key={index}
                   className="flex flex-col items-center justify-center gap-2"
                 >
-                  <div className="w-[350px] h-[350px]">
+                  <div className="w-[350px] h-[350px] sm:w-[290px] sm:h-[290px]">
                     <img
                       src={item.img}
                       alt=""

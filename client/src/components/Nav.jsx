@@ -11,7 +11,7 @@ const Nav = ({ currentUser, currentUrl }) => {
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
             <img
-              src="/images/logo/logo2.png"
+              src="/images/logo/logo3.png"
               className="h-8"
               alt="Flowbite Logo"
             />

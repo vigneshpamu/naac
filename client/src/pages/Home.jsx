@@ -119,7 +119,7 @@ export default function Home() {
                       className="h-full w-full object-cover"
                     />
                   </div>
-                  <p className="py-2 text-xl font-semibold">{item.name}</p>
+                  <p className="py-2 text-lg font-semibold">{item.name}</p>
                   <button
                     onClick={() => handleDownload(item.pdfUrl, item.name)}
                     className="bg-orange-500 p-2 text-white rounded-md hover:opacity-95"

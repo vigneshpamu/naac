@@ -32,8 +32,8 @@ const Footer = () => {
     <>
       <div className="w-full bg-gray-100 py-10">
         <div className="max-w-[1200px] mx-auto">
-          <p className="text-2xl">Important Links</p>
-          <div className="flex flex-row justify-between mt-8 text-orange-500">
+          <p className="text-2xl  px-3 ">Important Links</p>
+          <div className="flex flex-col px-3 md:flex-row flex-wrap gap-5 justify-between mt-8 text-orange-500">
             {links.map((item) => {
               return <Link to={item.link}>{item.name}</Link>
             })}
