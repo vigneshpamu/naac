@@ -2,12 +2,58 @@ import { BoxesCore } from '@/components/aceternity/BoxesCore'
 import { cn } from '@/utils/cn'
 import clsx from 'clsx'
 import React from 'react'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+import HeroSect from '@/components/home/HeroSect'
 
 export default function Home() {
+  const data = [
+    {
+      id: 1,
+      name: 'NAAC CERTIFICATE 2018',
+      img: '/images/hero/1.png',
+      pdfUrl: 'src/pdf/1.pdf',
+    },
+    {
+      id: 2,
+      name: 'NAAC CERTIFICATE 2015',
+      img: '/images/hero/2.png',
+      pdfUrl: 'src/pdf/2.pdf',
+    },
+    {
+      id: 3,
+      name: 'NAAC CERTIFICATE 2009',
+      img: '/images/hero/3.png',
+      pdfUrl: 'src/pdf/3.pdf',
+    },
+    {
+      id: 4,
+      name: 'NAAC CERTIFICATE 2004',
+      img: '/images/hero/4.png',
+      pdfUrl: 'src/pdf/4.pdf',
+    },
+  ]
   const meteors = new Array(50 || 20).fill(true)
+
+  const handleDownload = (path, name) => {
+    // Assuming your PDF file is located at the specified path
+    const pdfPath = path
+    // Creating an anchor element
+    const link = document.createElement('a')
+    link.href = pdfPath
+    link.download = 'filename.pdf' // You can specify the filename here
+    link.click()
+  }
+
   return (
-    <div className="h-[100vh] relative bg-slate-900 ">
-      {meteors.map((el, idx) => (
+    <div className="h-[100vh] max-w-8xl mt-16 relative bg-gray-50 ">
+      {/* {meteors.map((el, idx) => (
         <span
           key={'meteor' + idx}
           className={cn(
@@ -21,118 +67,39 @@ export default function Home() {
             animationDuration: Math.floor(Math.random() * (10 - 2) + 2) + 's',
           }}
         ></span>
-      ))}
-      {/* <div className="relative flex items-center flex-row justify-between  h-full max-w-[1200px] py-5 mx-auto">
-        <div>
-          <p className="text-white  text-4xl font-semibold">Welcome To </p>
-          <p className="text-white  text-5xl font-semibold">
-            <span className="text-red-500"># </span>
-            FANTASIES 2024
-          </p>
-          <p className="text-white">Scroll down to see all the events</p>
-        </div>
-        <div className="  ">
-         
-          <img src="/images/hero/hero2.png" className="w-[350px]" alt="" />
-        </div>
-      </div> */}
-      <div className="bg-slate-900 ">
-        <div className="bg-gradient-to-b from-violet-600/[.15] via-transparent">
-          <div className="max-w-[100%] mx-auto px-4 sm:px-6 lg:px-8 py-24 space-y-8">
-            {/* <!-- Announcement Banner --> */}
-            <div className="flex justify-center">
-              <a
-                className="group inline-block bg-white/[.05] hover:bg-white/[.1] border border-white/[.05] p-1 ps-4 rounded-full shadow-md"
-                href=""
-              >
-                <p className="me-2 inline-block text-white text-sm">
-                  SITARA - Legacy Unfolded
-                </p>
-                <span className="group-hover:bg-white/[.1] py-1.5 px-2.5 inline-flex justify-center items-center gap-x-2 rounded-full bg-white/[.075] font-semibold text-white text-sm">
-                  <svg
-                    className="flex-shrink-0 size-4"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M5.27921 2L10.9257 7.64645C11.1209 7.84171 11.1209 8.15829 10.9257 8.35355L5.27921 14"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinejoin="round"
+      ))} */}
+      <HeroSect />
+      <div className="w-full bg-gray-100 py-10">
+        <div className="max-w-[1200px] mx-auto">
+          <p className="text-3xl mb-6 font-semibold">NAAC Certificates </p>
+          <div className="grid gap-x-4 lg:grid-cols-4">
+            {data.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className="bg-white flex flex-col gap-4 rounded-sm h-full p-3 hove r:scale-105 transition-all cursor-pointer"
+                >
+                  <div className="h-[300px] ">
+                    <img
+                      src={item.img}
+                      alt=""
+                      className="h-full w-full object-cover"
                     />
-                  </svg>
-                </span>
-              </a>
-            </div>
-            {/* <!-- End Announcement Banner --> */}
-
-            {/* <!-- Title --> */}
-            <div className="max-w-3xl text-center mx-auto">
-              <h1 className="block font-medium text-gray-200 text-4xl sm:text-5xl md:text-5xl lg :text-6xl">
-                Fantasies: Where Dreams Unfold
-              </h1>
-              <h1 className="block mt-5 font-medium text-gray-200 text-4xl sm:text-3xl ">
-                Ignite Your Passion at SIES College of Commerce and Economics
-              </h1>
-            </div>
-            {/* <!-- End Title --> */}
-
-            <div className="max-w-3xl text-center mx-auto">
-              <p className="text-lg text-gray-400">
-                Join us at Fantasies, SIES College's cultural fest, celebrating
-                25 years with the radiant theme "SITARA". Reflect on our
-                journey, embrace the present, and anticipate boundless
-                creativity ahead.
-              </p>
-            </div>
-
-            {/* <!-- Buttons --> */}
-            <div className="text-center flex items-center justify-center flex-row gap-5">
-              <a
-                className="inline-flex justify-center items-center gap-x-3 text-center bg-gradient-to-tl from-blue-600 to-violet-600 shadow-lg shadow-transparent hover:shadow-blue-700/50 border border-transparent text-white text-sm font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white py-3 px-6 dark:focus:ring-offset-gray-800"
-                href="#"
-              >
-                Register Now
-                <svg
-                  className="flex-shrink-0 size-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinejoin="round"
-                >
-                  <path d="m9 18 6-6-6-6" />
-                </svg>
-              </a>
-              <a
-                className="inline-flex justify-center items-center gap-x-3 text-center bg-gradient-to-tl from-blue-600 to-violet-600 shadow-lg shadow-transparent hover:shadow-blue-700/50 border border-transparent text-white text-sm font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white py-3 px-6 dark:focus:ring-offset-gray-800"
-                href="#"
-              >
-                Explore Events
-                <svg
-                  className="flex-shrink-0 size-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinejoin="round"
-                >
-                  <path d="m9 18 6-6-6-6" />
-                </svg>
-              </a>
-            </div>
-            {/* <!-- End Buttons --> */}
+                  </div>
+                  <p className="py-2 text-xl font-semibold">{item.name}</p>
+                  <button
+                    onClick={() => handleDownload(item.pdfUrl, item.name)}
+                    className="bg-orange-500 p-2 text-white rounded-md hover:opacity-95"
+                  >
+                    Download PDF
+                  </button>
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>
+      <div className="w-full">Footer</div>
     </div>
   )
 }
