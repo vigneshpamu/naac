@@ -84,8 +84,8 @@ const Success = () => {
           </button>
         </Link>
         <div className="actual-receipt">
-          <div className="max-w-[120rem] px-4 sm:px-6 lg:px-8 mx-auto my-4 sm:my-10">
-            <div className="sm:w-11/12 lg:w-full mx-auto">
+          <div className="max-w-[90rem] px-4 sm:px-6 lg:px-8 mx-auto my-4 sm:my-10">
+            <div className="sm:w-11/12 lg:w-3/4 mx-auto">
               {/* Card */}
               <div className="flex flex-col p-4 sm:p-10 bg-white shadow-md rounded-xl dark:bg-gray-800">
                 {/* Grid */}
