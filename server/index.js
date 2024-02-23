@@ -6,7 +6,14 @@ import authRouter from './routes/auth.route.js'
 import listingRouter from './routes/listing.route.js'
 import cookieParser from 'cookie-parser'
 import path from 'path'
+import cors from 'cors'
+import Razorpay from 'razorpay'
+import User from './models/user.model.js'
 
+const razorpay = new Razorpay({
+  key_id: 'rzp_test_yoQ3nmI7J3LyOK',
+  key_secret: 'V60RDhmjFRpwjNjZp7aOGaDo',
+})
 dotenv.config()
 mongoose
   .connect(process.env.MONGO)
@@ -28,6 +35,28 @@ app.listen(3003, () => {
 app.use('/api/user', userRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/listing', listingRouter)
+
+app.use('/api/payment/checkout', async (req, res) => {
+  const { name, amount, email } = req.body
+  const user = await User.findOne({ email: email })
+
+  if (!user) return
+
+  const order = razorpay.orders.create({
+    amount: Number(amount * 100),
+    currency: 'INR',
+  })
+
+  await OrderModel.create({
+    order_id: order.id,
+    name: name,
+    amount: amount,
+    user: user._id,
+  })
+
+  console.log(order)
+  res.json(order)
+})
 
 // app.use(express.static(path.join(__dirname, '/client/dist')))
 // app.get('*', (req, res) => {
