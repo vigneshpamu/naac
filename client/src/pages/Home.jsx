@@ -13,6 +13,7 @@ import {
 import HeroSect from '@/components/home/HeroSect'
 import { Link } from 'react-router-dom'
 import Footer from '@/components/common/Footer'
+import UpButton from '@/components/common/UpButton'
 
 export default function Home() {
   const data = [
@@ -82,6 +83,7 @@ export default function Home() {
 
   return (
     <div className="h-full max-w-8xl mt-16 relative bg-gray-50 ">
+      <UpButton />
       {/* {meteors.map((el, idx) => (
         <span
           key={'meteor' + idx}
@@ -100,8 +102,10 @@ export default function Home() {
       <HeroSect />
       <div className="w-full bg-gray-100 py-10">
         <div className="max-w-[1200px] mx-auto">
-          <p className="text-3xl mb-6 font-semibold">NAAC Certificates </p>
-          <div className="grid gap-x-4 lg:grid-cols-4">
+          <p className="text-3xl mb-6 px-4 xl:px-0  font-semibold">
+            NAAC Certificates{' '}
+          </p>
+          <div className="grid px-5 gap-4 grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4">
             {data.map((item, index) => {
               return (
                 <div

@@ -7,15 +7,18 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
+import { Link } from 'react-router-dom'
 const HeroSect = () => {
   return (
     <>
       <div className="max-w-[1200px] flex items-center  py-16 justify-center flex-col gap-10 mx-auto">
         <div className="flex flex-col gap-1 items-center justify-center">
-          <p className="text-blue-800 font-semibold  text-3xl">
+          <p className="text-blue-800 font-semibold text-center text-xl sm:text-2xl  md:text-3xl">
             SIES COLLEGE OF COMMERCE & ECONOMICS
           </p>
-          <p className="text-blue-800 font-semibold  text-3xl">(AUTONOMOUS)</p>
+          <p className="text-blue-800 font-semibold text-center text-xl sm:text-2xl  md:text-3xl">
+            (AUTONOMOUS)
+          </p>
         </div>
         <p className="w-[90%] text-center">
           Keeping in view the growing demand in the stream of Commerce, the SIES
@@ -27,10 +30,12 @@ const HeroSect = () => {
           the College is among the leading educational institutions in Mumbai
           today.
         </p>
-        <button className="p-3 mb-16 px-10 rounded-2xl bg-orange-500 hover:opacity-90 text-white">
-          Learn More
-        </button>
-        <div className="flex flex-row gap-20">
+        <Link to="/about">
+          <button className="p-3 mb-16 px-10 rounded-2xl bg-orange-500 hover:opacity-90 text-white">
+            Learn More
+          </button>
+        </Link>
+        <div className="flex flex-col sm:flex-row gap-20">
           <Dialog className="">
             <DialogTrigger>
               <div className="w-[250px] flex items-center justify-center flex-col gap-2">

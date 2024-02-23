@@ -29,16 +29,21 @@ const Footer = () => {
     },
   ]
   return (
-    <div className="w-full bg-gray-100 py-10">
-      <div className="max-w-[1200px] mx-auto">
-        <p className="text-2xl">Important Links</p>
-        <div className="flex flex-row justify-between mt-8 text-orange-500">
-          {links.map((item) => {
-            return <Link to={item.link}>{item.name}</Link>
-          })}
+    <>
+      <div className="w-full bg-gray-100 py-10">
+        <div className="max-w-[1200px] mx-auto">
+          <p className="text-2xl">Important Links</p>
+          <div className="flex flex-row justify-between mt-8 text-orange-500">
+            {links.map((item) => {
+              return <Link to={item.link}>{item.name}</Link>
+            })}
+          </div>
         </div>
       </div>
-    </div>
+      <div className="max-w-[1200px] mx-auto flex items-center justify-center p-8">
+        <p>© 2024 SIES College Of Commerce & Economics. All Rights Reserved.</p>
+      </div>
+    </>
   )
 }
 

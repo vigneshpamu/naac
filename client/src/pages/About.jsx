@@ -1,4 +1,5 @@
 import Footer from '@/components/common/Footer'
+import UpButton from '@/components/common/UpButton'
 import React from 'react'
 
 const About = () => {
@@ -51,6 +52,7 @@ const About = () => {
   ]
   return (
     <div className="h-full max-w-8xl  mt-16 relative">
+      <UpButton />
       <div
         className="bg-cover h-[90px] bg-center"
         style={{ backgroundImage: "url('/images/about/hero.jpg')" }}
