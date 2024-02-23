@@ -92,7 +92,7 @@ app.post('/api/payment/payment-verification', async (req, res) => {
       )
 
       res.redirect(
-        `http://localhost:3006/success?payment_id=${razorpay_payment_id}`
+        `http://localhost:3006/success?order_id=${razorpay_order_id}`
       )
     } catch (error) {
       console.error('Error updating order:', error)
@@ -101,6 +101,14 @@ app.post('/api/payment/payment-verification', async (req, res) => {
   } else {
     res.redirect('http://localhost:3006/failed')
   }
+})
+
+app.post('/api/orders/order', async (req, res) => {
+  const { id } = req.body
+  const order = await OrderModel.findOne({ order_id: id })
+  const user = await User.findById(order.user)
+  console.log('Correct')
+  res.json({ order, user })
 })
 // app.use(express.static(path.join(__dirname, '/client/dist')))
 // app.get('*', (req, res) => {
