@@ -15,6 +15,7 @@ import ThreeThreeTwo from '@/components/criteria-3/3-3/ThreeThreeTwo'
 import ThreeThreeThree from '@/components/criteria-3/3-3/ThreeThreeThree'
 import ThreeThreeFour from '@/components/criteria-3/3-3/ThreeThreeFour'
 import ThreeFourOne from '@/components/criteria-3/3-4/ThreeFourOne'
+import ThreeFourTwo from '@/components/criteria-3/3-4/ThreeFourTwo'
 const Criteria3 = () => {
   return (
     <div className="max-w-[1200px] mx-auto py-10 mt-16">
@@ -79,6 +80,12 @@ const Criteria3 = () => {
             <AccordionTrigger className="text-3xl">3.4.1</AccordionTrigger>
             <AccordionContent>
               <ThreeFourOne />
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-11">
+            <AccordionTrigger className="text-3xl">3.4.2</AccordionTrigger>
+            <AccordionContent>
+              <ThreeFourTwo />
             </AccordionContent>
           </AccordionItem>
         </Accordion>

@@ -12,9 +12,9 @@ const ThreeFourTwo = () => {
           About Criteria :-{' '}
         </p>
         <p className="text-xl">
-          Number of books and chapters in edited volumes/books published and
-          papers published in national/ international conference proceedings per
-          teacher during last five years
+          Number of functional MoUs with national and international
+          institutions, universities, industries, corporate houses etc. during
+          the last five years
         </p>
       </div>
       {/* Criteria Table - (Table) */}
@@ -39,25 +39,19 @@ const ThreeFourTwo = () => {
                 Year
               </th>
               <th scope="col" className="px- py-3">
-                Teacher's Name
+                Organization with which MoU is signed
               </th>
               <th scope="col" className="px- py-3">
-                Title of paper
+                Institution
               </th>
               <th scope="col" className="px-4 py-3">
-                Book Title
+                Duration
               </th>
               <th scope="col" className="px-4 py-3">
-                Name of author
+                List the activities under MoU
               </th>
               <th scope="col" className="px-4 py-3">
-                Title of conference
-              </th>
-              <th scope="col" className="px-4 py-3">
-                Name of the publisher:
-              </th>
-              <th scope="col" className="px-4 py-3">
-                ISBN/ISSN number
+                Number of students/teachers
               </th>
             </tr>
           </thead>
@@ -75,8 +69,6 @@ const ThreeFourTwo = () => {
               <td className="px-4 py-4 text-black">Vignesh</td>
               <td className="px-4 py-4 text-black">Bsc IT</td>
               <td className="px-4 py-4 text-black">&#8377; 1,10,000</td>
-              <td className="px-4 py-4 text-black">2 Years</td>
-              <td className="px-4 py-4 text-black">&#8377; 1,10,000</td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               {/* <th
@@ -91,8 +83,6 @@ const ThreeFourTwo = () => {
               <td className="px-4 py-4 text-black">Danish</td>
               <td className="px-4 py-4 text-black">BAF</td>
               <td className="px-4 py-4 text-black">&#8377; 1,10,000</td>
-              <td className="px-4 py-4 text-black">2 Years</td>
-              <td className="px-4 py-4 text-black">&#8377; 1,10,000</td>
             </tr>
             <tr className="bg-white dark:bg-gray-800">
               {/* <th
@@ -106,8 +96,6 @@ const ThreeFourTwo = () => {
               <td className="px-4 py-4 text-black">Aryan</td>
               <td className="px-4 py-4 text-black">Aryan</td>
               <td className="px-4 py-4 text-black">B.Com</td>
-              <td className="px-4 py-4 text-black">&#8377; 1,10,000</td>
-              <td className="px-4 py-4 text-black">2 Years</td>
               <td className="px-4 py-4 text-black">&#8377; 1,10,000</td>
             </tr>
           </tbody>
@@ -146,11 +134,11 @@ const ThreeFourTwo = () => {
                   htmlFor="yearSelect"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Name of the teache
+                  Organization with which MoU is signed{' '}
                 </label>
                 <input
                   type="text"
-                  placeholder="Name of the teache"
+                  placeholder="Organization with which MoU is signed"
                   className="w-full mt-2  border border-gray-200 rounded-md p-2"
                 />
               </div>
@@ -159,11 +147,11 @@ const ThreeFourTwo = () => {
                   htmlFor="yearSelect"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Title of the paper
+                  Name of the institution/industry/corporate house
                 </label>
                 <input
                   type="text"
-                  placeholder="Title of the paper"
+                  placeholder="Name of the institution/industry/corporate house"
                   className="w-full mt-2  border border-gray-200 rounded-md p-2"
                 />
               </div>
@@ -174,11 +162,11 @@ const ThreeFourTwo = () => {
                   htmlFor="yearSelect"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Title of the book published
+                  Duration{' '}
                 </label>
                 <input
                   type="text"
-                  placeholder="Title of the book published"
+                  placeholder="Duration"
                   className="w-full mt-2  border border-gray-200 rounded-md p-2"
                 />
               </div>
@@ -187,11 +175,11 @@ const ThreeFourTwo = () => {
                   htmlFor="yearSelect"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Name of the author
+                  List the actual activities under each MoU
                 </label>
                 <input
                   type="text"
-                  placeholder="Name of the autho"
+                  placeholder="List the actual activities under each MoU"
                   className="w-full mt-2  border border-gray-200 rounded-md p-2"
                 />
               </div>
@@ -201,43 +189,16 @@ const ThreeFourTwo = () => {
                   htmlFor="yearSelect"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  ISBN/ISSN number
+                  Number of students/teachers
                 </label>
                 <input
                   type="number"
-                  placeholder="ISBN/ISSN number"
+                  placeholder="Number of students/teachers"
                   className="w-full mt-2  border border-gray-200 rounded-md p-2"
                 />
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-5 mt-7">
-              <div className="col-span-1">
-                <label
-                  htmlFor="yearSelect"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Title of the proceedings of the conference
-                </label>
-                <input
-                  type="text"
-                  placeholder="Title of the proceedings of the conference"
-                  className="w-full mt-2  border border-gray-200 rounded-md p-2"
-                />
-              </div>
-              <div className="col-span-1">
-                <label
-                  htmlFor="yearSelect"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Name of the publisher
-                </label>
-                <input
-                  type="text"
-                  placeholder="Name of the publisher"
-                  className="w-full mt-2  border border-gray-200 rounded-md p-2"
-                />
-              </div>
-            </div>
+
             {/* <div className="grid grid-cols-1 gap-5 mt-7"></div> */}
             <button className="mt-8 border p-4 px-10 rounded-md bg-green-600 text-white text-xl">
               Submit
