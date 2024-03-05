@@ -1,9 +1,78 @@
-import React from 'react'
+import { sortByYearDescending } from '@/utils/sortByYear'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 const ThreeThreeOne = () => {
   const currentYear = new Date().getFullYear()
   const years = Array.from({ length: 15 }, (_, index) => currentYear - index)
   const arr = ['BSc IT', 'B.Com', 'BAF', 'BMS']
+  const [tableData, setTableData] = useState()
+  const [singleData, setSingleData] = useState({
+    year: '',
+    description: '',
+    file: [],
+  })
+  const [sData, setSData] = useState()
+
+  const formSubmit = async (name, amount, id) => {
+    const { data } = await axios.post(
+      'http://localhost:3003/api/criteria-3/three-three-one',
+      {
+        singleData,
+      }
+    )
+    setSData(data)
+    console.log(data)
+  }
+
+  const handleChange = (event) => {
+    const { name, value } = event.target
+    console.log(name)
+    setSingleData({ ...singleData, [name]: value })
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Make Axios GET request
+        const { data } = await axios.get(
+          'http://localhost:3003/api/criteria-3/get/three-three-one'
+        )
+        // const fData = response.data.filter((item) => item.category === 'car')
+        // Set the data in state
+        const newArr = sortByYearDescending(data)
+        console.log(newArr, 'Yes Data')
+        setTableData(newArr)
+        // setDataNew(fData)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+
+    fetchData() // Call the fetchData function
+  }, [sData])
+
+  useEffect(() => {
+    if (singleData?.year?.length > 0) {
+      const filteredData = tableData?.filter(
+        (item) => Number(item.year) === Number(singleData?.year)
+      )
+      if (filteredData.length > 0) {
+        const firstItem = filteredData[0] // Assuming you want to take the first item from filtered data
+
+        setSingleData((prevSingleData) => ({
+          ...prevSingleData,
+          description: firstItem.description,
+          file: [],
+        }))
+      }
+    }
+  }, [singleData?.year])
+
+  useEffect(() => {
+    console.log(singleData, 'Yes Single Data')
+  }, [singleData])
+
   return (
     <div className="px-10">
       {/* Criteria Information - (Title) */}
@@ -43,37 +112,18 @@ const ThreeThreeOne = () => {
               </th>
             </tr>
           </thead>
-          <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              {/* <th
-                scope="row"
-                className="px-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Apple MacBook Pro 17"
-              </th> */}
-              <td className="px-4 py-4 text-black">2023</td>
-              <td className="px-4 py-4 text-black">Laptop</td>
-            </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              {/* <th
-                scope="row"
-                className="px-4 py-4 text-black font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Microsoft Surface Pro
-              </th> */}
-              <td className="px-4 py-4 text-black">2022</td>
-              <td className="px-4 py-4 text-black">Laptop</td>
-            </tr>
-            <tr className="bg-white dark:bg-gray-800">
-              {/* <th
-                scope="row"
-                className="px-4 py-4 text-black font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Magic Mouse 2
-              </th> */}
-              <td className="px-4 py-4  text-black">2021</td>
-              <td className="px-4 py-4 text-black">Laptop</td>
-            </tr>
+          <tbody className="text-[1 1px]">
+            {tableData?.map((item, index) => {
+              return (
+                <tr
+                  key={index}
+                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                >
+                  <td className="px-4 py-4 text-black">{item.year}</td>
+                  <td className="px-4 py-4 text-black">{item.description}</td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
       </div>
@@ -95,7 +145,9 @@ const ThreeThreeOne = () => {
                 </label>
                 <select
                   id="yearSelect"
-                  name="yearSelect"
+                  name="year"
+                  value={singleData?.year}
+                  onChange={handleChange}
                   className="mt-2 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 >
                   {years.map((year) => (
@@ -113,7 +165,13 @@ const ThreeThreeOne = () => {
               >
                 Description
               </label>
-              <textarea className="w-full max-h-500px border"></textarea>{' '}
+              <textarea
+                name="description"
+                disabled={singleData?.year?.length < 1}
+                value={singleData?.description}
+                onChange={handleChange}
+                className="w-full max-h-500px border p-2"
+              ></textarea>{' '}
             </div>
             <button className="mt-8 border p-4 px-10 rounded-md bg-green-600 text-white text-xl">
               Submit
